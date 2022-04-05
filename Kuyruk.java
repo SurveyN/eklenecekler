@@ -23,4 +23,8 @@ public class Kuyruk {
 		void goster() {
 			System.out.println(tabloDegerleri);
 		}
+		
+		void temiz() {
+			tabloDegerleri.clear();
+		}
 }
