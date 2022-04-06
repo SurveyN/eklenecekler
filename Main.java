@@ -34,31 +34,30 @@ public class Main {
 			f = new File("dogruluk_tablosu.txt");
 			fr = new FileReader(f);
 			br = new BufferedReader(fr);
-			String fonksiyon = br.readLine();
-			System.out.print(fonksiyon.charAt(ayrac+((j+1)*2))+" = ");
+			br.readLine();
 			for (int i = 0; i < Math.pow(2,tbd.boyut()); i++) {
 				kontrol = br.readLine();
-				term.ekle(kontrol.charAt(ayrac+((j+1)*2)));
-			}
-			for(int k = 0; k < term.boyut(); k++) {
-				if(term.getir(k).equals('1')) {
-					minterm.ekle(Character.forDigit(k, 10));
+				Character terim = kontrol.charAt(ayrac+((j+1)*2));
+				if(terim.equals('1')) {
+					minterm.ekle(Character.forDigit(i, 10));
 				}
-				if(term.getir(k).equals('0')) {
-					maxterm.ekle(Character.forDigit(k, 10));
-				}			
+				else if(terim.equals('0')) {
+					maxterm.ekle(Character.forDigit(i, 10));
+				}
 			}
+			
+			System.out.print(ilk.charAt(ayrac+((j+1)*2))+" = ");
 			System.out.print("E");
 			minterm.goster();
-			System.out.print(fonksiyon.charAt(ayrac+((j+1)*2))+" = ");
+			System.out.print(ilk.charAt(ayrac+((j+1)*2))+" = ");
 			for (int l = 0; l< minterm.boyut(); l++) {
 				System.out.print("m"+minterm.getir(l)+" + ");
 			}
 			System.out.println();
-			System.out.print(fonksiyon.charAt(ayrac+((j+1)*2))+" = ");
+			System.out.print(ilk.charAt(ayrac+((j+1)*2))+" = ");
 			System.out.print("U");
 			maxterm.goster();
-			System.out.print(fonksiyon.charAt(ayrac+((j+1)*2))+" = ");
+			System.out.print(ilk.charAt(ayrac+((j+1)*2))+" = ");
 			for (int n = 0; n< maxterm.boyut(); n++) {
 				System.out.print("M"+maxterm.getir(n)+" + ");
 			}
