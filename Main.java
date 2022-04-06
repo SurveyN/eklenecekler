@@ -7,7 +7,6 @@ import java.lang.Math;
 public class Main {
 
 	public static void main(String[] args) throws FileNotFoundException {
-		//System.out.println("Hello World");
 		Scanner sc = new Scanner(System.in);
 		try {
 		File f = new File("dogruluk_tablosu.txt");
@@ -17,20 +16,12 @@ public class Main {
 		String ilk = br.readLine();
 		int ayrac = ilk.indexOf('|');
 		
-		
-		
-		
-		
-		
-		
-		Kuyruk tbd = new Kuyruk(); //Tablo degiskenleri ve sayisi icin tutuyoruz.
+		Kuyruk tbd = new Kuyruk();
 		for (int i = 0; i < ayrac; i+=2) {
 			tbd.ekle(ilk.charAt(i));
 		}
 		
-		
-		
-		Kuyruk cikti = new Kuyruk(); //Cikti fonksiyonlarini ve sayisini tutmak icin
+		Kuyruk cikti = new Kuyruk(); 
 		for (int i = ayrac+2 ; i < ilk.length(); i+=2) {
 			cikti.ekle(ilk.charAt(i));
 		}
@@ -79,7 +70,59 @@ public class Main {
 		}
 		
 		
-		Kuyruk kd = new Kuyruk();//Kullanicidan aldigimiz degerleri tutmak icin
+		for (int j = 0; j < cikti.boyut(); j++) {
+			System.out.println();
+			for (int t = 0; t < 2; t++) {
+				System.out.println();
+				System.out.print(ilk.charAt(ayrac+((j+1)*2))+" = ");
+				fr = new FileReader(f);
+				br = new BufferedReader(fr);
+				String degiskenler = br.readLine();
+				while (br.ready()) {
+			        degiskenler = br.readLine();
+					Character fun = degiskenler.charAt(ayrac+((j+1)*2));
+					
+					for (int i = 0; i < tbd.boyut(); i++) {
+		            	Character tempc = degiskenler.charAt(i*2);
+		            
+		            	if(fun.equals('1') && t == 0){
+		            		if(tempc.equals('0')) {
+			            		System.out.print(ilk.charAt(i*2)+"'");
+		            		}
+			            	else if(tempc.equals('1')) {
+			            		System.out.print(ilk.charAt(i*2));
+			            	}
+		            		if (i == tbd.boyut()- 1) {
+		            			System.out.print("+");
+		            		}
+		            	}
+		            	
+		            	else if(fun.equals('0') && t == 1){
+		            		if(i == 0) {
+		            			System.out.print("(");
+		            		}
+		            		
+		            		if(tempc.equals('0')) {
+			            		System.out.print(ilk.charAt(i*2)+"+");
+		            		}
+			            	else if(tempc.equals('1')) {
+			            		System.out.print(ilk.charAt(i*2)+"'+");
+			            	}
+			            	
+		            		if (i == tbd.boyut()- 1) {
+		            			System.out.print(")");
+		            		}
+		            	}
+					}
+					
+					
+				}
+			}
+		}
+		
+		System.out.println();
+		System.out.println();
+		Kuyruk kd = new Kuyruk();
 		for (int i = 0; i < tbd.boyut(); i++) {
 			System.out.print("Lutfen degiskenin degerini giriniz: ");
 			char tempChar = sc.next().charAt(0);
